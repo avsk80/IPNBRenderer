@@ -1,0 +1,17 @@
+template.py
+    '''
+    example doc:
+    
+    >>> from pathlib import Path
+    >>> Path("/d/MS/projects/IPNBRenderer")
+    WindowsPath('/d/MS/projects/IPNBRenderer')
+    >>>
+    >>> fp = Path("/d/MS/projects/IPNBRenderer")
+    >>> fp    
+    WindowsPath('/d/MS/projects/IPNBRenderer')
+    >>> import os
+    >>> os.path.split(fp)
+    ('\\d\\MS\\projects', 'IPNBRenderer')
+    >>> os.path.exists(fp)
+    False
+'''
