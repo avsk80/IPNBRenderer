@@ -11,7 +11,7 @@ while True:
     project_name = input("Please enter project name: ")
     if project_name:
         break
-    
+
 logging.info(f"Creating project {project_name}")
 
 #list of files:
