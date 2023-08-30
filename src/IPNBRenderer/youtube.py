@@ -15,33 +15,32 @@ def get_time_info(url: str) -> int:
 
     try:
         split_val = url.split("=")
-        if len(split_val) > 3:
+        if (len(split_val) > 3) or (len(url.split("==")) > 1):
             raise InvalidURLException
         if "watch" in url:
             if "&t" in url:
-                vid_id, time = split_val[-2][:-2], int(split_val[-1][:-1])
+                vid_id, time = url.split("=")[-2][:-2], int(url.split("=")[-1][:-1])
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
-            else:
-                vid_id, time = split_val[-1], 0
+            else: 
+                vid_id, time = url.split("=")[-1], 0
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
         else:
-            if "=" in url and "?t" in url:
-                vid_id, time = split_val[0].split("/")[-1][:-2], int(split_val[-1])
+            if ("=" in url) and ("&t=" in url):
+                vid_id, time = url.split("/")[-1].split("?")[0], int(url.split("/")[-1].split("?")[1].split("=")[-1])
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
             else:
-                vid_id, time = url.split("/")[-1], 0
+                vid_id, time = url.split("/")[-1].split("?")[0], 0
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
     except Exception:
         raise InvalidURLException
-
 
 @ensure_annotations
 def render_youtube_video(url: str, width: int = 780, height: int = 160) -> str:
