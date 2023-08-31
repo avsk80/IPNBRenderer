@@ -23,14 +23,16 @@ def get_time_info(url: str) -> int:
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
-            else: 
+            else:
                 vid_id, time = url.split("=")[-1], 0
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
         else:
             if ("=" in url) and ("&t=" in url):
-                vid_id, time = url.split("/")[-1].split("?")[0], int(url.split("/")[-1].split("?")[1].split("=")[-1])
+                vid_id, time = url.split("/")[-1].split("?")[0], int(
+                    url.split("/")[-1].split("?")[1].split("=")[-1]
+                )
                 _verify_videoIDlen(vid_id)
                 logger.info(f"video starts at: {time}")
                 return time
@@ -41,6 +43,7 @@ def get_time_info(url: str) -> int:
                 return time
     except Exception:
         raise InvalidURLException
+
 
 @ensure_annotations
 def render_youtube_video(url: str, width: int = 780, height: int = 160) -> str:
@@ -66,5 +69,7 @@ def render_youtube_video(url: str, width: int = 780, height: int = 160) -> str:
             """
             display.display(display.HTML(iframe))
             return "success"
+        else:
+            raise InvalidURLException("Invalid URL")
     except Exception as e:
         raise e
