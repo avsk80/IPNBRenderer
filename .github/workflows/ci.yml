@@ -36,5 +36,4 @@ jobs:
         pip install -r requirements.txt
     - name: Test with pytest #tox
       run: | #tox
-        pytest -v tests/unit
-        pytest -v tests/integration
+        pytest -v 

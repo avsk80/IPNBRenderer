@@ -19,7 +19,9 @@ setup(
     long_description=long_description,
     long_description_content ="text/markdown",
     url=f"https://github.com/{AUTHOR_NAME}/{REPO_NAME}",
-    packages=find_packages(where="src"),
+    packages=find_packages(
+                where="src",
+                include=["IPNBRenderer","IPNBRenderer.*"]),
     license="MIT",
     package_dir={"": "src"}
 )

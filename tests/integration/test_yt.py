@@ -2,7 +2,6 @@ import pytest
 from IPNBRenderer.youtube import render_youtube_video
 from IPNBRenderer.custom_exception import InvalidURLException
 
-
 class TestYTVideoRenderer:
     good_url_data = [
         ("https://www.youtube.com/watch?v=CIbJSX-biu0", "success"),
